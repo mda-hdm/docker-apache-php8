@@ -7,4 +7,4 @@ docker ps -a -q --filter ancestor="$name:latest" | xargs docker rm
 docker rmi $name:latest
 
 docker build -t $name .
-docker run -d -p 8000:80 --name apache-php8 $name:latest
+docker run -d -p 80:80 --name apache-php8 $name:latest
