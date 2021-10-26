@@ -34,7 +34,10 @@ WORKDIR /app
 VOLUME /app
 
 COPY entrypoint.sh /usr/local/bin/
-RUN chmod +x /usr/local/bin/entrypoint.sh
+
+# Note that the sed command is used to change line endings of the entrypoint to just LF.
+RUN chmod +x /usr/local/bin/entrypoint.sh && \
+	sed -i 's/\r$//' /usr/local/bin/entrypoint.sh
 
 EXPOSE 80
 ENTRYPOINT ["entrypoint.sh"]
